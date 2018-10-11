@@ -137,7 +137,7 @@ function isShip(coordinate) {
 
 console.log(isShip('B3'));
 
-/*Chllenge 10)Your next job is to write a function so that your lighthouse can sweep a whole row of cells.
+/*Challenge 10)Your next job is to write a function so that your lighthouse can sweep a whole row of cells.
 
 Write a function named lightRow() that takes in the number of the row and returns its contents. (Example: lightRow(2); would return ["", "", "v", "", "~", "", "", "", "", ""])*/
 
@@ -146,3 +146,21 @@ function lightRow(row) {
 }
 
 console.log(lightRow(2));
+
+/*Challenge 11) Now that you can return the contents of the cells of a row, we also need to be able to return the cells of a column.
+
+Write a function called lightColumn() that takes in the letter of the column from the grid, and returns an array that is the contents of that grid column. (Ex: lightColumn('C'); would return ["", "", "", "", "", "", "", "~", "", ""])*/
+
+function lightColumn(coordinate) {
+	let column = [];
+	for (i = 0; i < GRID.length; i++) {
+        for (j = 0; j < GRID[i].length; j++) {
+            if (j == convertColumn(coordinate)) {
+				column.push(GRID[i][convertColumn(coordinate)]);
+			}
+        }
+    }
+	return column;
+}
+
+console.log(lightColumn('E'));
