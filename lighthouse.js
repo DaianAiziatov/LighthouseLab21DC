@@ -169,9 +169,8 @@ console.log(lightColumn('E'));
 
 function lightCell(coordinate) {
 	console.log(coordinate)
-	//if (coordinate.length == 2 && (/^[^a-z\s]/+/[0-9]/.test(coordinate)) && !(/[0-9]/.test(convertColumn(coordinate)))) {
-	if (/^(\w{1})(\d{1})$/.test(coordinate)) {
-		let column = convertColumn(coordinate);
+	let column = convertColumn(coordinate);
+	if (/^(\w{1})(\d{1})$/.test(coordinate) && column < GRID.length) {
     	let row = Number(coordinate.charAt(1)) - 1;
     	return GRID[row][column];
 	} else {
@@ -179,8 +178,6 @@ function lightCell(coordinate) {
 	}
 }
 
-console.log(lightCell('2c'));
+console.log(lightCell('Z2'));
 
-
-//  /^[A-Za-z]$/ /^[0-9]$/ + /[0-9]$/
-/^(\d{1})(\w{1})$/
+//CHANGE regular expression in lighthouse tomorrow
