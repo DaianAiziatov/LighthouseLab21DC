@@ -164,3 +164,21 @@ function lightColumn(coordinate) {
 }
 
 console.log(lightColumn('E'));
+
+/*Challenge 12) The weekend lighthouse operator isn't as smart as you are, and sometimes tells the Lighthouse9000™ system to do invalid things, causing the repairman to have to come out and fix the lighthouse. Upgrade the lightCell() method so that if an invalid cell is passed in, it returns false. (Example: lightCell('Z3'); would return false as would lightCell('A11');) */
+
+function lightCell(coordinate) {
+	console.log(coordinate.length)
+	if (coordinate.length == 2 && (/[^a-z\s]/+/[0-9]/.test(coordinate)) && convertColumn(coordinate) != 'Column out of the GRID!') {
+		let column = convertColumn(coordinate);
+    	let row = Number(coordinate.charAt(1)) - 1;
+    	return GRID[row][column];
+	} else {
+		return false
+	}
+}
+
+console.log(lightCell('C2'));
+
+
+
