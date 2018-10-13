@@ -106,7 +106,7 @@ function isRock(coordinate) {
     }
 }
 
-console.log(isRock('D1'));
+console.log(isRock('B1'));
 
 
 /*Challenge 8)There are also areas where the currents are too strong for boats to be effective, and boats run the risk of being smashed up against the rocks if they get caught here. Strong currents are indicated with the ~ symbol.
@@ -168,16 +168,57 @@ console.log(lightColumn('E'));
 /*Challenge 12) The weekend lighthouse operator isn't as smart as you are, and sometimes tells the Lighthouse9000™ system to do invalid things, causing the repairman to have to come out and fix the lighthouse. Upgrade the lightCell() method so that if an invalid cell is passed in, it returns false. (Example: lightCell('Z3'); would return false as would lightCell('A11');) */
 
 function lightCell(coordinate) {
-	console.log(coordinate)
 	let column = convertColumn(coordinate);
-	if (/^(\w{1})(\d{1})$/.test(coordinate) && column < GRID.length) {
-    	let row = Number(coordinate.charAt(1)) - 1;
+	if (/^(\w{1})(\d{1,2})$/.test(coordinate) && column < GRID[0].length && coordinate.length <= 3) {
+		let row;
+    	if (coordinate.length == 2) {
+			row = Number(coordinate.charAt(1)) - 1;
+		} else {
+			row = Number(coordinate.charAt(1) + coordinate.charAt(2)) - 1;
+		}
     	return GRID[row][column];
 	} else {
 		return false
 	}
 }
 
-console.log(lightCell('Z2'));
+console.log(lightCell('b9'));
 
-//CHANGE regular expression in lighthouse tomorrow
+/*Challenge 13) Environment Canada has called and wants a report sent to them of all the rocks and currents in your grid, for use in their latest map.
+
+Write a function called allRocks() which when called will return an array of the coordinates of all the rocks in your grid. (Example: allRocks() should return ['D1', 'E3', 'F3', 'E4', 'F4', 'B8', 'H8', 'B9', 'B10'])
+
+Write a function called allCurrents() which, when called, will return an array of the coordinates of all the strong currents in your grid. (Example: allCurrents() should return ['E2', 'C8', 'D8', 'D9', 'E9', 'E10', 'F10'])*/
+
+function allRocks() {
+	let rocksArray = [];
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	for (row = 0; row < GRID.length; row++) {
+        for (let column of alphabet) {
+			let coordinate = column + (row + 1);
+            if (isRock(coordinate)) {
+				rocksArray.push(coordinate);
+			}
+        }
+    }
+	return rocksArray;
+}
+
+console.log(allRocks());
+
+function allCurrents() {
+	let currentsArray = [];
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	for (row = 0; row < GRID.length; row++) {
+        for (let column of alphabet) {
+			let coordinate = column + (row + 1);
+            if (isCurrent(coordinate)) {
+				currentsArray.push(coordinate);
+			}
+        }
+    }
+	return currentsArray;
+}
+
+console.log(allCurrents());
+
