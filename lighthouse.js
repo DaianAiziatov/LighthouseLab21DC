@@ -222,3 +222,22 @@ function allCurrents() {
 
 console.log(allCurrents());
 
+/*Challenge 14)While we are reporting on things, let's make a report for all of the ships in our area. This one is for Transport Canada, as they are the ones watching all the movements of ships.
+
+Write a function called allShips() which, when called, will return an array of the coordinates of all the ships in your grid.*/
+
+function allShips() {
+	let shipsArray = [];
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	for (row = 0; row < GRID.length; row++) {
+        for (let column of alphabet) {
+			let coordinate = column + (row + 1);
+            if (isShip(coordinate)) {
+				shipsArray.push(coordinate);
+			}
+        }
+    }
+	return shipsArray;
+}
+
+console.log(allShips());
