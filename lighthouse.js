@@ -222,7 +222,7 @@ function allCurrents() {
 
 console.log(allCurrents());
 
-/*Challenge 14)While we are reporting on things, let's make a report for all of the ships in our area. This one is for Transport Canada, as they are the ones watching all the movements of ships.
+/*Challenge 14) While we are reporting on things, let's make a report for all of the ships in our area. This one is for Transport Canada, as they are the ones watching all the movements of ships.
 
 Write a function called allShips() which, when called, will return an array of the coordinates of all the ships in your grid.*/
 
@@ -241,3 +241,37 @@ function allShips() {
 }
 
 console.log(allShips());
+
+/*Challenge 15) Here is an opportunity to prove how powerful your Lighthouse-powering skills are! Write a function called firstRock() which will return the coordinates of the first rock in your grid. Consider how you might use one of your previously written functions to simplify your task!*/
+
+function firstRock() {
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	for (row = 0; row < GRID.length; row++) {
+        for (let column of alphabet) {
+			let coordinate = column + (row + 1);
+            if (isRock(coordinate)) {
+				return coordinate;
+				break;
+			}
+        }
+    }
+}
+
+console.log(firstRock());
+
+/*Challenge 16) That was outstanding! Now do the same thing with firstCurrent(). Don't reinvent the wheel here, re-use existing code. This is one of the most important skills you can build as a coder...er, uh, I mean Lighthouse operator.*/
+
+function firstCurrent() {
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	for (row = 0; row < GRID.length; row++) {
+        for (let column of alphabet) {
+			let coordinate = column + (row + 1);
+            if (isCurrent(coordinate)) {
+				return coordinate;
+				break;
+			}
+        }
+    }
+}
+
+console.log(firstCurrent());
