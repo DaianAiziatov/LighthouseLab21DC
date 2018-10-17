@@ -275,3 +275,32 @@ function firstCurrent() {
 }
 
 console.log(firstCurrent());
+
+/*Challenge 17) Transport Canada called back. They want something similar to what you did for firstRock() and firstCurrent() but they want both the first AND the last ship in your area.
+
+Write a function called shipReport() which does not take any parameters, but will return an array of the coordinates of the ship furthest to the west (left) and east (right) of your GRID. (Example: shipReport() would return ['B3', 'J10'].)*/
+
+function shipReport() {
+	let shipArray = [];
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	let westColumn = GRID.length/2 - 1;
+	let eastColumn = GRID.length/2;
+	for (let column of alphabet) {
+         for (row = 0; row < GRID.length; row++) {
+			let coordinate = column + (row + 1);
+            if (isShip(coordinate)) {
+				if (convertColumn(coordinate) <= westColumn) {
+					shipArray.push(coordinate);
+					westColumn = convertColumn(coordinate);
+				}
+				if (convertColumn(coordinate) >= eastColumn) {
+					shipArray.push(coordinate);
+					eastColumn = convertColumn(coordinate);
+				}
+			}
+        }
+    }
+	return shipArray;
+}
+
+console.log(shipReport());
