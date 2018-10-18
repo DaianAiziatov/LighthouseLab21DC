@@ -304,3 +304,14 @@ function shipReport() {
 }
 
 console.log(shipReport());
+
+/*Challenge 18)A cell is considered dangerous if there is a rock or a strong current in it. However, a cell with rocks in it would be 100% dangerous, while strong currents are only 50% dangerous. Write a function called howDangerous() that will take a cell in the format 'G7' and return a number value for how dangerous the cell is. (Example: howDangerous('E2') will return 50 where howDangerous('E3') will return 100.)*/
+
+function howDangerous(coordinate) {
+	if (allRocks().includes(coordinate)) return 100;
+	if (allCurrents().includes(coordinate)) return 50;
+	else return 0;
+}
+
+console.log(howDangerous('E2'));
+console.log(howDangerous('E3'));
