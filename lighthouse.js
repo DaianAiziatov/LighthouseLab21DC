@@ -251,7 +251,6 @@ function firstRock() {
 			let coordinate = column + (row + 1);
             if (isRock(coordinate)) {
 				return coordinate;
-				break;
 			}
         }
     }
@@ -268,7 +267,6 @@ function firstCurrent() {
 			let coordinate = column + (row + 1);
             if (isCurrent(coordinate)) {
 				return coordinate;
-				break;
 			}
         }
     }
@@ -330,3 +328,28 @@ function percentageReport() {
 }
 
 console.log(percentageReport());
+
+/*Challenge 20) Lighthouse HQ also wants a report of the safety of your GRID. Write another function called `safetyReport()` which will return your GRID with all of the values replaced by the percentage for how dangerous they are. The percentages for how dangerous a cell is were established in question #18.*/
+
+function safetyReport() {
+	let safetyGRID = GRID.slice();
+	let percentage = 0;
+	let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+	for (i = 0; i < safetyGRID.length; i++) {
+        for (let column of alphabet) {
+			let coordinate = column + (i + 1);
+			if (convertColumn(coordinate) == safetyGRID[i].length) {
+				break;
+			} else {
+				percentage = howDangerous(coordinate);
+            	safetyGRID[i][convertColumn(coordinate)] = percentage;
+			}
+        }
+    }
+	return safetyGRID;
+}
+
+let safetyGRID = safetyReport();
+for (i = 0; i < safetyGRID.length; i++) {
+	console.log('\n' + safetyGRID[i]);
+}
