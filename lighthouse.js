@@ -349,7 +349,33 @@ function safetyReport() {
 	return safetyGRID;
 }
 
-let safetyGRID = safetyReport();
-for (i = 0; i < safetyGRID.length; i++) {
-	console.log('\n' + safetyGRID[i]);
+/*Challenge 21)Ship captains have heard of your prowess and want to know the length of their routes through your grid.
+
+Write a function called calcDistance() which will take two coordinates in the form of 'A3' and calculate the distance between the two points*/
+
+function calcDistance(coordinate1, coordinate2) {
+	if (coordinate1.length > 3 || coordinate2.length > 3) return 'Invalid coordinate';
+	let x1 = convertColumn(coordinate1);
+	let x2 = convertColumn(coordinate2)
+	let y1;
+	let y2;
+	if (coordinate1.length == 2 && coordinate2.length == 2) {
+			y1 = Number(coordinate1.charAt(1));
+			y2 = Number(coordinate2.charAt(1));
+		} else if (coordinate1.length == 3  && coordinate2.length == 2){
+			y1 = Number(coordinate1.charAt(1) + coordinate1.charAt(2));
+			y2 = Number(coordinate2.charAt(1));
+		} else if (coordinate2.length == 3 && coordinate1.length == 2){
+			y1 = Number(coordinate1.charAt(1));
+			y2 = Number(coordinate2.charAt(1) + coordinate2.charAt(2));
+		} else {
+			y1 = Number(coordinate1.charAt(1) + coordinate1.charAt(2));
+			y2 = Number(coordinate2.charAt(1) + coordinate2.charAt(2));
+		}
+	console.log('x1 = ' + x1 + '\nx2 = ' + x2 + '\ny1 = ' + y1 + '\ny2 = ' + y2);
+	let distance = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+	distance = distance.toFixed(2);
+	return distance;
 }
+
+console.log(calcDistance('A10', 'C10'));
